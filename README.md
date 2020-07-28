@@ -13,4 +13,4 @@
 > about us
 > A small group of people trying to make the world a better place :)
 ````
-Take a look at **[Space Legion](Space-Legion.github.io)**
+Take a look at **[Space Legion](https://space-legion.github.io/)**

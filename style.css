@@ -1,7 +1,7 @@
 :root {
   background: radial-gradient(#050526 0%, #000000 90%) -20vw 10vh no-repeat black;
   margin: 0;
-  padding: 0;
+  padding-right:  950px;
   width: 100vw;
   height: 100vh;
   position: absolute;
@@ -21,7 +21,6 @@
 
 body{
   padding: 40px;
-  background-color: black;
   font-family: monospace;  
 }
 

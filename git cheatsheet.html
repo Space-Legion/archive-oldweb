@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Cheatsheet</title>
+</head>
+    <meta name="viewport" content="480*800, user-scalable=yes">
+    <meta name="viewport" content="480*854, user-scalable=yes">
+    <meta name="viewport" content="1024*600, user-scalable=yes">
+    <meta name="viewport" content="1280*800, user-scalable=yes">
+    <meta name="viewport" content="1280*720, user-scalable=yes">
+    <meta name="viewport" content="1366*768, user-scalable=yes">
+<body>
+    <style>
+        body {
+    background-color: black;
+    color:white;
+    font-family: monospace;
+    font-size: 18px;
+    }
+    </style>
+    <a href="index.html" style="text-decoration: none;"><p class="head" style="color: white; font-size: 30px;">SpaceLegion<span style="color: aqua;">.wiki</span></p></a>
+    <br>
+    <p style="font-size: 30px;">GIT CHEATSHEET</p>
+    <br>
+
+    # 1  Install git
+    <br>
+    <br>
+
+        Debian/Ubuntu - <em>sudo apt install git</em>
+        <br>
+        Arch          - <em>sudo pacman -S git</em>
+        <br>
+        Fedora22      - <em>sudo dnf -y install git</em>
+        <br>
+        Gentoo        - <em>emerge --ask --verbose dev-vcs/git</em>
+        <br>
+        FreeBSD       - <em>pkg install git</em>
+        <br>
+        OpenBSD       - <em>pkg_add git</em>
+        <br>
+        Solaris 11    - <em>pkg install developer/versioning/git</em>
+        <br>
+        NixOS         - <em>nix-env -i git</em>
+        <br>
+        openSUSE      - <em>zypper install git</em>
+        <br>
+        RHEL, CentOS  - <em>yum install git </em>
+        <br>
+        Solus         - <em>sudo eopkg install git</em>
+        <br>
+        <br>
+
+    Check git version using <em>git --version</em>
+    <br>
+    <br>
+    <br>
+    # 2  Create and git initialize a directory
+    <br>
+    <br>
+
+        <em>mkdir sample</em> (creating a folder)
+        <br>
+        <br>
+        <em>cd sample</em> (moving to the directory)
+        <br>
+        <br>
+        <em>git init</em> (git initialize the directory)
+        <br>
+        <br>
+        <br>
+
+    # 3  Configure git
+        <br>
+        <br>
+
+        <em>git config --gloabl user.name (username) </em>
+        <br>
+        <br>
+        <em>git config --gloabl user.email (user email)</em>
+        <br>
+        <br>
+        <br>
+
+    # 4  Create a file
+        <br>
+        <br> 
+
+        <em>touch sample.html</em> (creating an html sample file)
+        <br>
+        <br>
+        <em>touch sample.py</em>
+        <br>
+        <br>
+        <em>touch main.js</em>
+        <br>
+        <br>
+        <em>touch index.html</em>
+        <br>
+        <br>
+        <br>
+
+    # 5  Add a file 
+        <br>
+        <br>
+        <em>git add sample.html</em>
+        <br>
+        <br>
+        <br>
+
+    # 6  Add all file in the directory
+        <br>
+        <br>
+
+        <em>git add .</em> (Add all the files)
+        <br>
+        <br>
+        <br>
+
+    # 7  Add all files which has the same extension
+        <br>
+        <br>
+        <em>git add *.html</em> (It wil add all the .html)
+        <br>
+        <br>
+        <br>
+
+    # 8  View current git status
+        <br>
+        <br>
+        <em>git status</em>
+        <br>
+        <br>
+        <br>
+
+    # 9  Remove a file
+        <br>
+        <br>
+        <em>git rm --cached index.html</em> (removes index.html file)
+        <br>
+        <br>
+        <br>
+
+    # 10 Commit all files
+        <br>
+        <br>
+        <em>git Commit</em>
+        <br>
+        <br>
+        <br>
+    # 11 Commit directly to master branch
+        <br>
+        <br>
+        <em>git commit -m "your changelog"</em>
+        <br>
+        <br>
+        <br>
+
+    # 12 Create a branch
+        <br>
+        <br>
+        <em>git branch sample</em>
+        <br>
+        <br>
+        <br>
+
+    # 13 Switch between branches
+        <br>
+        <br>
+        <em>git checkout sample</em>
+        <br>
+        <br>
+        <br>
+
+    # 14 Merge branches
+        <br>
+        <br>
+        <em>git merge sample</em>
+        <br>
+        <br>
+        <br>
+
+    # 15 Add remote url
+        <br>
+        <em>git remote add origin (repo url)</em>
+        <br>
+        <br>
+        <br>
+
+    # 16 View repo
+        <br>
+        <br> 
+        <em>git remote</em>
+        <br>
+        <br>
+        <br>
+
+    # 17 Push all the files to git repository
+        <br>
+        <br>
+        <em>git push -u origin master</em>
+        <br>
+        <br>
+        <br>
+
+    # 18 To pull a file
+        <br>
+        <br>
+        <em>git pull (repo url)</em>
+        <br>
+        <br>
+        <br>
+
+    # 19 Remove all files from git repo
+        <br>
+        <br>
+        <em>git rm -f *</em>
+        <br>
+        <br>
+        <br>
+
+    # 20 To clone any git repo
+        <br>
+        <br>
+        <em>git clone <url></em>
+        <br>
+        <br>
+        <br>
+    <p> By <a href="https://github.com/sarosx", target="_blank" style="text-decoration: none; color: greenyellow;">Sarosx</a></p>     
+</body>
+</html>

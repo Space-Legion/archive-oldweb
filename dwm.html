@@ -23,22 +23,22 @@
     </style>
     <a href="index.html" style="text-decoration: none;"><p class="head" style="color: white; font-size: 30px;">SpaceLegion<span style="color: aqua;">.wiki</span></p></a>
     <br>
-    <p style="font-size: 30px;">DWM Setup Guide</p>
+    <p style="font-size: 30px;">dwm installation guide</p>
     <br>
 
-1 Install your Gpu drivers
+1 Complete arch linux base installation and also install your Gpu drivers
 <br>
 <br>
 
-2 <em>sudo pacman -S xorg-server xorg-xinit xorg-xsetroot firefox/chromium nitrogen picom dmenu nano</em> <br> <br> (basic display server, web browser, nitrogen- for wallpaper, picom- compositor dmenu - quick access menu)
+2 <em># sudo pacman -S xorg-server xorg-xinit xorg-xsetroot firefox/chromium nitrogen picom dmenu nano</em> <br> <br> (basic display server, web browser, nitrogen- for wallpaper, picom- compositor dmenu- quick access menu xrandr- setting display resolution)
 <br>
 <br>
 
-3 <em>cp /etc/X11/xinit/xinitrc .xinitrc</em> (copies xinitrc for lauching WM and starting other daemon process)
+3 <em># cp /etc/X11/xinit/xinitrc .xinitrc</em> (copies xinitrc for lauching WM and starting other daemon process)
 <br>
 <br>
 
-4 <em>nano .xinitrc</em> (clear the last five lines)
+4 <em># nano .xinitrc</em> (clear the last five lines)
 <br>
 <br>
 
@@ -58,102 +58,122 @@ Add this, then save and exit nano
 <br>
 <br>
 
-5 <em>sudo pacman -S wget</em> (retrieves content from web servers)
+5 <em># sudo pacman -S wget</em> (retrieves content from web servers)
 <br>
 <br>
 
-6 <em>wget https://dl.suckless.org/dwm/dwm-6.2.tar.gz</em> (This downloads dwm from suckless's website. If the url is broken, visit suckless for upstream https://dwm.suckless.org/)
+6 <em># wget https://dl.suckless.org/dwm/dwm-6.2.tar.gz</em> <br> <br>(This downloads dwm from suckless's website. If the url is broken, visit suckless for upstream https://dwm.suckless.org/)
 <br>
 <br>
 
-7 <em>tar -xzvf dwm-6.2.tar.gz</em> (This extracts dwm tar file)
+7 <em># tar -xzvf dwm-6.2.tar.gz</em> (This extracts dwm tar file)
 <br>
 <br>
 
-8 <em>cd dwm-6.2</em>
+8 <em># cd dwm-6.2</em>
 <br>
 <br>
 
-9 <em>sudo make clean install</em> (This will compile and install dwm)
+9 <em># sudo make clean install</em> (This will compile and install dwm)
 <br>
 <br>
 
-10 <em>sudo pacman -S xfce4-terminal</em> (Installs xfce4 terminal)
+10 <em># sudo pacman -S xfce4-terminal</em> (Installs xfce4 terminal)
 <br>
 <br>
 
-11 <em>cd dwn-6.2</em>
+11 <em># cd dwn-6.2</em>
 <br>
 <br>
 
-12 <em>nano config.deh.h</em>
+12 <em># nano config.deh.h</em>
 <br>
 <br>
 
 Replace <em>"st"</em> with xfce4-terminal in following line  "static const char *termcmd[ ]= {"xfce4-terminal", NULL};"
 <br>
-save and exit nano
+<br>
+then, save and exit nano
 <br>
 <br>
-13 <em>cd dwm-6.2</em>
+13 <em># cd dwm-6.2</em>
 <br>
 <br>
-14 <em>rm config.h</em>
+14 <em># rm config.h</em>
 <br>
 <br>
 Type yes for removing the file
 <br>
 <br>
-15 <em>sudo make clean install</em>
+15 <em># sudo make clean install</em>
 <br>
 <br>
-16 <em>reboot</em>
+16 <em># reboot</em>
 <br>
 <br>
-17 <em>sudo nano /etc/xdg/picom.conf</em>
+17 <em># sudo nano /etc/xdg/picom.conf</em>
 <br>
 <br>
-comment out vsync true;
+comment out vsync true;, ie <em># vsync true;</em>
 <br>
 <br>
-18 <em># vsync true;</em>
+then save and exit nano
+<br>
+<br>
+18 <em># reboot</em>
+<br>
+<br>
+19 <em># startx</em>
+<br>
+<br>
+20 <em># nano .xinitrc</em>
+<br>
+<br>
+Add this command after the setxkbmap line 
+<br>
+<br>
+xrandr --output "your display name" --mode "your resolution" &
+<br>
+<br>
+To get your display name type <em>xrandr</em> in terminal
+<br>
+<br>
+Example:- <em># xrandr --output DisplayPort-0 --mode 1920x1080 &</em>
 <br>
 <br>
 save and exit nano
 <br>
 <br>
-19 <em>reboot</em>
-<br>
-<br>
-20 <em>startx</em>
+21 <em># reboot</em>
 <br>
 <br>
 Alt + P , this opens dmenu. search nitrogen and open it > add a folder for the wallpaper directory and select an image and apply ( you can choose automatic, scaled zoom etc optional)
 <br>
 <br>
-21 <em>nano .xinitrc</em>
+22 <em># nano .xinitrc</em>
 <br>
 <br>
 Add a line new after picom
 <br>
 <br>
-22 <em>nitrogen --restore &</em>
+<em>nitrogen --restore &</em>
 <br>
 <br>
 save and exit nano
 <br>
 <br>
-23 <em>nano .xinitrc</em>
+23 <em># nano .xinitrc</em>
 <br>
 <br>
 Enter this after the nitrogen's line
 <br>
 <br>
-while true; dobr<br>
-      dwm >/dev/null 2>&1<br>
-done<br>
+<p><em>while true; do</em><p>
+        <p style="padding-left: 65px;"><em>dwm >/dev/null 2>&1</em><p>
+<p><em>done</em><p>
 <br>
-This command will start a while loop
+<br>
+This command will start a while loop.
 <br>
 <br>
 save and exit nano
@@ -162,13 +182,13 @@ save and exit nano
 Press Alt+shift+Q to exit and startx and then again alt+shift+q to test this
 <br>
 <br>
-24 <em>sudo pacman -S pulseaudio pamixer pavucontrol</em>
+24<em># sudo pacman -S pulseaudio pamixer pavucontrol</em>
 <br>
 <br>
 open terminal and type pavucontrol to launch audio manager and to control other audio input or output devices
 <br>
 <br>
 
-<p style="color: yellow;">By <a href="https://github.com/nebulaxyz", target="_blank" style="text-decoration: none; color: yellow;">Nebulaxyz</a></p>
+By <a href="https://github.com/nebulaxyz", target="_blank" style="text-decoration: none; color: yellow;">Nebulaxyz</a></p>
 </body>
 </html>

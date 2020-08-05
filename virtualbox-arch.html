@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Install Virtual-box Arch</title>
+</head>
+<body>
+    
+</body>
+<meta name="viewport" content="480*800, user-scalable=yes">
+    <meta name="viewport" content="480*854, user-scalable=yes">
+    <meta name="viewport" content="1024*600, user-scalable=yes">
+    <meta name="viewport" content="1280*800, user-scalable=yes">
+    <meta name="viewport" content="1280*720, user-scalable=yes">
+    <meta name="viewport" content="1366*768, user-scalable=yes">
+
+    <style>
+        body {
+    background-color: black;
+    color:white;
+    font-family: monospace;
+    font-size: 18px;
+    }
+    </style>
+    <a href="index.html" style="text-decoration: none;"><p class="head" style="color: white; font-size: 30px;">SpaceLegion<span style="color: aqua;">.wiki</span></p></a>
+    <br>
+    <p style="font-size: 30px;">Virtual-Box Install Arch</p>
+    <br>
+        <em>sudo pacman -S virtualbox</em>
+        <br>
+        <br>
+        And select the package virtualbox-host-modules-arch, ie option 2 while installing
+        <br>
+        <br>
+
+        <em>sudo modprobe vboxdrv</em>
+        <br>
+        <br>
+
+        <em>sudo nano /etc/modules-load.d/virtualbox.conf</em> (type vboxdrv then save and exit, So we don't have to start it manually )
+        <br>
+        <br>
+
+        <em>yay virtualbox-ext-oracle</em> (or go to virtualbox's and download the extension pack https://www.virtualbox.org/wiki/Downloads)
+        <br>
+        <br>
+        <em>sudo gpasswd -a $USER vboxusers</em> (This is necessary in order to fully access the features provided by VirtualBox, including the ability to use USB devices in a Guest operating system.)
+
+</html>

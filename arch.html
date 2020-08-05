@@ -33,10 +33,14 @@ body {
         1 # <em>ping stallman.org</em> (to check internet connectivity)
         <br>
         <br>
-        2 # <em>lsblk</em> (to list all partitions with drives)
+        <br>
+        2 # <em>timedatectl set-ntp true</em> (to ensure the system clock is accurate)
+        <br>
+        >br>
+        3 # <em>lsblk</em> (to list all partitions with drives)
         <br>
         <br>
-        3 # <em>cfdisk /dev/sda</em> (your hardisk name)
+        4 # <em>cfdisk /dev/sda</em> (your hardisk name)
         <br>
         <br>
         <br>
@@ -67,10 +71,10 @@ body {
         Type lsblk to review your changes.<br>
         <br>
         <br>
-        4 # <em>mkfs.fat -F32 /dev/sda1</em> (creates a FAT32 file system for EFI System partition)
+        5 # <em>mkfs.fat -F32 /dev/sda1</em> (creates a FAT32 file system for EFI System partition)
         <br>
         <br>
-        5 # mkfs.ext4 /dev/sda2 (create the EXT4 file system for the root partition)
+        6 # mkfs.ext4 /dev/sda2 (create the EXT4 file system for the root partition)
         <br>
         <br>
        
@@ -95,16 +99,16 @@ body {
         =====================
         <br>
         <br>
-        6 # <em>mount /dev/sda2 /mnt</em> (In order to install Arch Linux, the /(root) partition must be mounted to /mnt directory mount point)
+        7 # <em>mount /dev/sda2 /mnt</em> (In order to install Arch Linux, the /(root) partition must be mounted to /mnt directory mount point)
         <br>
         <br>
         # <em>pacman -Sy</em> (to sync)
         <br>
         <br>
-        7 # <em>pacstrap /mnt base base-devel linux linux-firmware nano</em> (installs base system, base development tools, linux kernel, firmware, cli editor) 
+        8 # <em>pacstrap /mnt base base-devel linux linux-firmware nano</em> (installs base system, base development tools, linux kernel, firmware, cli editor) 
         <br>
         <br>
-        8 # <em>genfstab -U -p /mnt >> /mnt/etc/fstab</em> (generates fstab file for your new Arch Linux system)
+        9 # <em>genfstab -U -p /mnt >> /mnt/etc/fstab</em> (generates fstab file for your new Arch Linux system)
         <br>
         <br>
         Arch Linux System configuration
@@ -112,10 +116,10 @@ body {
         ===============================
         <br>
         <br>
-        9 # <em>arch-chroot /mnt</em> (chroots into /mnt the system path)
+        10 # <em>arch-chroot /mnt</em> (chroots into /mnt the system path)
         <br>
         <br>
-        10 # <em>pacman -S nano</em> (installs nano cli editor)
+        11 # <em>pacman -S nano</em> (installs nano cli editor)
         <br>
         <br>
         # <em>nano /etc/locale.gen</em> (Configuring your system Language. Choose and uncomment your preferred encoding languages from /etc/locale.gen) 
@@ -136,7 +140,7 @@ body {
         # <em>hwclock --systohc --utc</em> (configure the hardware clock to use UTC, the hardware clock is usually set to the local time)
         <br>
         <br>
-        11 # <em>passwd</em> (create a password for root user)
+        12 # <em>passwd</em> (create a password for root user)
         <br>
         <br>
         # <em>useradd -mG wheel "username"</em> (creates a user account with sudo permissions)
@@ -151,37 +155,37 @@ body {
         uncomment "%wheel ALL=(ALL) ALL" Then save and exit 
         <br>
         <br>
-        12 # <em>pacman -S grub efibootmgr</em> (installs grub bootloader for UEFI systems)
+        13 # <em>pacman -S grub efibootmgr</em> (installs grub bootloader for UEFI systems)
         <br>
         <br>
-        13 # <em>mkdir /boot/EFI</em> (making directory for EFI installation) 
+        14 # <em>mkdir /boot/EFI</em> (making directory for EFI installation) 
         <br>
         <br>
-        14 # <em>mount /dev/sda1 /boot/EFI #Mount FAT32 EFI partition</em>  (mounting for installation)
+        15 # <em>mount /dev/sda1 /boot/EFI #Mount FAT32 EFI partition</em>  (mounting for installation)
         <br>
         <br>
-        15 # <em>grub-install --target=x86_64-efi  --bootloader-id=grub_uefi --recheck</em> (installs grub)
+        16 # <em>grub-install --target=x86_64-efi  --bootloader-id=grub_uefi --recheck</em> (installs grub)
         <br>
         <br>
-        16 # <em>grub-mkconfig -o /boot/grub/grub.cfg</em> (creating GRUB configuration file)
+        17 # <em>grub-mkconfig -o /boot/grub/grub.cfg</em> (creating GRUB configuration file)
         <br>
         <br>
-        17 # <em>pacman -S networkmanager</em> (package for internet connectivity)
+        18 # <em>pacman -S networkmanager</em> (package for internet connectivity)
         <br>
         <br>
-        18 # <em>systemctl enable NetworkManager</em> (enabling it from boot itself)
+        19 # <em>systemctl enable NetworkManager</em> (enabling it from boot itself)
         <br>
         <br>
-        19 # <em>nano /etc/hostname</em> (type a name for your host, eg: Archlinux)
+        20 # <em>nano /etc/hostname</em> (type a name for your host, eg: Archlinux)
         <br>
         <br>
-        20 # <em>exit</em> (exiting chroot environment)
+        21 # <em>exit</em> (exiting chroot environment)
         <br>
         <br>
-        21 # <em>umount -R /mnt</em> (This will unmount drives)
+        22 # <em>umount -R /mnt</em> (This will unmount drives)
         <br>
         <br>
-        22 # <em>reboot</em>
+        23 # <em>reboot</em>
         <br>
         <br>
         The base installation has been finished
@@ -194,7 +198,7 @@ body {
         =======================
         <br>
         <br>
-        23 # <em>pacman -S xorg</em> (display server)
+        24 # <em>pacman -S xorg</em> (display server)
         <br>
         <br>
         Installing Graphics drivers 
@@ -332,7 +336,7 @@ body {
          (ntfs-3g- support for ntfs drives, git- git tools, celluloid- video player, Vlc- video player, rhythmbox- muisc player, feh- image viewer, xed- text editor, chromium & firefox- browsers,gvfs & gvfs-mtp- Mounting support for android devices)
         <br>
         <br>
-        24 # reboot
+        25 # reboot
         <br>
         <br>
         

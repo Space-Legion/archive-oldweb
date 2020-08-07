@@ -7,7 +7,7 @@
  Open-Source = true
  Propreitary = false
  Free-as-in-freedom = true
- Degoogle = true (our baby steps to reduce the power of the botnet.)
+ Degoogle = true (our baby steps to reduce the power of botnet.)
  ```
 ````bash
 > about us

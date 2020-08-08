@@ -30,7 +30,7 @@
 <br>
 <br>
 
-2 <em># sudo pacman -S xorg-server xorg-xinit xorg-xsetroot firefox/chromium nitrogen picom dmenu nano</em> <br> <br> (basic display server, web browser, nitrogen- for wallpaper, picom- compositor dmenu- quick access menu xrandr- setting display resolution)
+2 <em># sudo pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xrandr firefox/chromium nitrogen picom dmenu nano</em> <br> <br> (basic display server, web browser, nitrogen- for wallpaper, picom- compositor dmenu- quick access menu, xrandr- setting display resolution)
 <br>
 <br>
 
@@ -82,11 +82,7 @@ Add this, then save and exit nano
 <br>
 <br>
 
-11 <em># cd dwn-6.2</em>
-<br>
-<br>
-
-12 <em># nano config.deh.h</em>
+12 <em># nano config.def.h</em>
 <br>
 <br>
 
@@ -95,44 +91,43 @@ Replace <em>"st"</em> with xfce4-terminal in following line  "static const char 
 <br>
 then, save and exit nano
 <br>
+
+
 <br>
-13 <em># cd dwm-6.2</em>
-<br>
-<br>
-14 <em># rm config.h</em>
+13 <em># rm config.h</em>
 <br>
 <br>
 Type yes for removing the file
 <br>
 <br>
-15 <em># sudo make clean install</em>
+14 <em># sudo make clean install</em>
 <br>
 <br>
-16 <em># reboot</em>
+15 <em># reboot</em>
 <br>
 <br>
-17 <em># sudo nano /etc/xdg/picom.conf</em>
+16 <em># sudo nano /etc/xdg/picom.conf</em>
 <br>
 <br>
-comment out vsync true;, ie <em># vsync true;</em>
+comment out vsync true;, ie <em># vsync true;</em> (Only do this if you are in a Virtual Machine)
 <br>
 <br>
 then save and exit nano
 <br>
 <br>
-18 <em># reboot</em>
+17 <em># reboot</em>
 <br>
 <br>
-19 <em># startx</em>
+18 <em># startx</em>
 <br>
 <br>
-20 <em># nano .xinitrc</em>
+19 <em># nano .xinitrc</em>
 <br>
 <br>
 Add this command after the setxkbmap line 
 <br>
 <br>
-xrandr --output "your display name" --mode "your resolution" &
+xrandr --output "your display name" --mode "your resolution" & (Only do this if you are in a Virtual Machine)
 <br>
 <br>
 To get your display name type <em>xrandr</em> in terminal
@@ -144,13 +139,13 @@ Example:- <em># xrandr --output DisplayPort-0 --mode 1920x1080 &</em>
 save and exit nano
 <br>
 <br>
-21 <em># reboot</em>
+20 <em># reboot</em>
 <br>
 <br>
 Alt + P , this opens dmenu. search nitrogen and open it > add a folder for the wallpaper directory and select an image and apply ( you can choose automatic, scaled zoom etc optional)
 <br>
 <br>
-22 <em># nano .xinitrc</em>
+21 <em># nano .xinitrc</em>
 <br>
 <br>
 Add a line new after picom
@@ -159,19 +154,12 @@ Add a line new after picom
 <em>nitrogen --restore &</em>
 <br>
 <br>
-save and exit nano
-<br>
-<br>
-23 <em># nano .xinitrc</em>
-<br>
-<br>
-Enter this after the nitrogen's line
+Enter the following lines after the nitrogen's line
 <br>
 <br>
 <p><em>while true; do</em><p>
         <p style="padding-left: 65px;"><em>dwm >/dev/null 2>&1</em><p>
 <p><em>done</em><p>
-<br>
 <br>
 This command will start a while loop.
 <br>
@@ -182,7 +170,7 @@ save and exit nano
 Press Alt+shift+Q to exit and startx and then again alt+shift+q to test this
 <br>
 <br>
-24<em># sudo pacman -S pulseaudio pamixer pavucontrol</em>
+23<em># sudo pacman -S pulseaudio pamixer pavucontrol</em>
 <br>
 <br>
 open terminal and type pavucontrol to launch audio manager and to control other audio input or output devices

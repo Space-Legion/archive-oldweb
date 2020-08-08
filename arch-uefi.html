@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Install Arch Linux</title>
+    <link rel="shortcut icon" href="../img/arch.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/arch-install.css">
+
+</head>
+<body>
+   
+<style>
+body {
+    background-color: black;
+    color:white;
+}
+</style>
+
+    <meta name="viewport" content="480*800, user-scalable=yes">
+    <meta name="viewport" content="480*854, user-scalable=yes">
+    <meta name="viewport" content="1024*600, user-scalable=yes">
+    <meta name="viewport" content="1280*800, user-scalable=yes">
+    <meta name="viewport" content="1280*720, user-scalable=yes">
+    
+    
+    <a href="index.html" style="text-decoration: none;font-family: monospace;"><p class="head" style="color: white; font-size: 30px;">SpaceLegion<span style="color: aqua;">.wiki</span></p></a>
+    <br>
+    <br>
+    <p style="font-family:'monospace'"><strong>After booting into Arch iso</strong>
+        <br>
+        <br>
+        1 # <em>ping stallman.org</em> (to check internet connectivity)
+        <br>
+        <br>
+        <br>
+        2 # <em>timedatectl set-ntp true</em> (to ensure the system clock is accurate)
+        <br>
+        <br>
+        3 # <em>lsblk</em> (to list all partitions with drives)
+        <br>
+        <br>
+        4 # <em>cfdisk /dev/sda</em> (your hardisk name)
+        <br>
+        <br>
+        <br>
+
+        <strong>For a basic partition.</strong> 
+        <br>
+        =====================
+        <br>
+        <br>
+         EFI System partition (/dev/sda1) with 512M size, FAT32 formatted.
+        <br>
+        <br>
+        Root partition (/dev/sda2) with at least 20G size or rest of HDD space, ext4 formatted.
+        <br>
+        <br>
+        Home directory is optional.
+        <br>
+        <br>
+        => Select new type the partition size in MB (512M) and press enter key, select Type from the bottom menu and choose EFI
+        <br>
+        <br>
+        => For /(root) partition use the following configuration: New -> Size: rest of free space -> Type Linux filesystem.
+        <br>
+        <br>
+        Then select Write, answer with yes in order to apply disk changes and then Quit the utility
+        <br>
+        <br>
+        Type lsblk to review your changes.<br>
+        <br>
+        <br>
+        5 # <em>mkfs.fat -F32 /dev/sda1</em> (creates a FAT32 file system for EFI System partition)
+        <br>
+        <br>
+        6 # mkfs.ext4 /dev/sda2 (create the EXT4 file system for the root partition)
+        <br>
+        <br>
+       
+        <br>
+        <br>
+        --------------------------------------------------------------------------<br>
+        # <em>mkfs.ext4 /dev/sdX</em>
+        <br>
+        <br>
+        # <em>mkdir /mnt/home</em>
+        <br>
+        <br>
+        # <em>mount /dev/sdX /mnt/home</em> - optional, if you need home partition
+        <br>
+        <br>
+        --------------------------------------------------------------------------
+        <br>
+        <br>
+        
+        Installing Arch Linux
+        <br>
+        =====================
+        <br>
+        <br>
+        7 # <em>mount /dev/sda2 /mnt</em> (In order to install Arch Linux, the /(root) partition must be mounted to /mnt directory mount point)
+        <br>
+        <br>
+        # <em>pacman -Sy</em> (to sync)
+        <br>
+        <br>
+        8 # <em>pacstrap /mnt base base-devel linux linux-firmware nano</em> (installs base system, base development tools, linux kernel, firmware, cli editor) 
+        <br>
+        <br>
+        9 # <em>genfstab -U -p /mnt >> /mnt/etc/fstab</em> (generates fstab file for your new Arch Linux system)
+        <br>
+        <br>
+        Arch Linux System configuration
+        <br>
+        ===============================
+        <br>
+        <br>
+        10 # <em>arch-chroot /mnt</em> (chroots into /mnt the system path)
+        <br>
+        <br>
+        11 # <em>pacman -S nano</em> (installs nano cli editor)
+        <br>
+        <br>
+        # <em>nano /etc/locale.gen</em> (Configuring your system Language. Choose and uncomment your preferred encoding languages from /etc/locale.gen) 
+          <br>
+          <br>
+          In this scenario- "en_US.UTF-8 UTF-8", "en_US ISO-8859-1"
+        <br>
+        <br>
+        # <em>locale-gen</em> (Generates your system language layout)
+        <br>
+        <br>
+        # <em>nano /etc/locale.conf</em> (type "LANG=en_US.UTF-8" then save and exit) (This assigns english as default language)
+        <br>
+        <br>
+        # <em>ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime</em> (configure your region and city, This is an example)
+        <br>
+        <br>
+        # <em>hwclock --systohc</em> (configure the hardware clock to use UTC, the hardware clock is usually set to the local time)
+        <br>
+        <br>
+        12 # <em>passwd</em> (create a password for root user)
+        <br>
+        <br>
+        # <em>useradd -mG wheel "username"</em> (creates a user account with sudo permissions)
+        <br>
+        <br>
+        # <em>passwd "username"</em> (create a password for user account)
+        <br>
+        <br>
+        # <em>EDITOR=nano visudo</em> (adding user account to sudoers group)
+        <br>
+        <br>
+        uncomment "%wheel ALL=(ALL) ALL" Then save and exit 
+        <br>
+        <br>
+        13 # <em>pacman -S grub efibootmgr</em> (installs grub bootloader for UEFI systems)
+        <br>
+        <br>
+        14 # <em>mkdir /boot/EFI</em> (making directory for EFI installation) 
+        <br>
+        <br>
+        15 # <em>mount /dev/sda1 /boot/EFI #Mount FAT32 EFI partition</em>  (mounting for installation)
+        <br>
+        <br>
+        16 # <em>grub-install --target=x86_64-efi  --bootloader-id=grub_uefi --recheck</em> (installs grub)
+        <br>
+        <br>
+        17 # <em>grub-mkconfig -o /boot/grub/grub.cfg</em> (creating GRUB configuration file)
+        <br>
+        <br>
+        18 # <em>pacman -S networkmanager</em> (package for internet connectivity)
+        <br>
+        <br>
+        19 # <em>systemctl enable NetworkManager</em> (enabling it from boot itself)
+        <br>
+        <br>
+        20 # <em>nano /etc/hostname</em> (type a name for your host, eg: Archlinux)
+        <br>
+        <br>
+        21 # <em>exit</em> (exiting chroot environment)
+        <br>
+        <br>
+        22 # <em>umount -R /mnt</em> (This will unmount drives)
+        <br>
+        <br>
+        23 # <em>reboot</em>
+        <br>
+        <br>
+        The base installation has been finished
+        <br>
+        ***************************************
+        <br>
+        <br>
+        Setting up your desktop
+        <br>
+        =======================
+        <br>
+        <br>
+        24 # <em>pacman -S xorg</em> (display server)
+        <br>
+        <br>
+        Installing Graphics drivers 
+        <br>
+        ===========================
+        <br>
+        If you're installing Arch in VirtualBox you should install the VirtualBox Guest Additions. The VirtualBox Guest Additions contain the video drivers, You can install the guest additions from the Arch repositories
+        <br>
+        <br>
+        # <em>pacman -S linux-headers</em>
+        <br>
+        # <em>pacman -S virtualbox-guest-utils</em>
+        <br>
+        # <em>systemctl enable vboxservice</em>
+        <br>
+        <br>
+        For AMD GPU
+        <br>
+        ===========
+        <br>
+        # <em>pacman -S xf86-video-amdgpu</em>
+        <br>
+        # <em>pacman -Sxf86-video-ati</em> (older cards only)
+        <br>
+        <br>
+        For Intel
+        <br>
+        =========
+        <br>
+        # <em>pacman -S xf86-video-intel</em> (Warning, If you are planning to install cinnamon destop environment, skip this driver install)
+        <br>
+        <br>
+        For Nvidia
+        <br>
+        ==========
+        <br>
+        # <em>pacman -S xf86-video-nouveau</em>
+        <br>
+        # <em>pacman -S nvidia</em> (This is a properietary driver)
+        <br>
+        <br>
+        Installing a desktop environment
+        <br>
+        ================================
+        <br>
+        <br>
+        Listed below are most of the popular desktop environments and their associated packages. Pick the one you like and install it!
+        <br>
+        <br>
+        * XFCE- <em>xfce4 xfce4-goodies</em>
+        <br>
+        * GNOME- <em>gnome gnome-extra</em>
+        <br>
+        * KDE- <em>plasma kde-applications</em>
+        <br>
+        * Cinnamon- <em>cinnamon</em>
+        <br>
+        * MATE- <em>mate mate-extra</em>
+        <br>
+        * LXDE- <em>lxde</em>
+        <br>
+        * LXQt- <em>lxqt</em>
+        <br>
+        <br>
+        Note:- For the GTK-based desktops (XFCE, GNOME, Cinnamon, MATE and LXDE), you'll want to install gvfs alongside the desktop to get 
+        wastebasket and mounting support for regular users. Install gvfs-mtp as well if you're planning to connect your Android phone. 
+        <br>
+        <br>
+        Cinnamon as an example:
+        <br>
+        ======================
+        <br>
+        <br>
+        # <em>pacman -S cinnamon gvfs gvfs-mtp gnome-terminal gnome-screenshot blueberry </em>
+        <br>
+        <br>
+        (gvfs & gvfs-mtp- Mounting support for android devices, terminal for linux terminal emulator, screenshot for there purpose, blueberry for bluetooth adapter)
+        <br>
+        <br>
+        Installing and setting up a Display Manager
+        <br>
+        ===========================================
+        <br>
+        XFCE- <em>lightdm gdm</em>
+        <br>
+        GNOME- <em>gdm lightdm</em>
+        <br>
+        KDE- <em>sddm</em>
+        <br>
+        LXDE- <em>lightdm</em>
+        <br>
+        LXQt- <em>sddm</em>
+        <br>
+        <br>
+        LightDM as an example:
+        <br>
+        =====================
+        <br>
+        <br>
+        
+        # <em>pacman -S lightdm lightdm-webkit2-greeter</em>
+       <br>
+        #  <em>sudo nano /etc/lightdm/lightdm.conf</em> (uncomment greeter-sessions)
+        <br>
+        <br>    
+        rename it to <em>greeter-sessions=lightdm-webkit2-greeter</em>   
+        <br>
+        <br>
+        To enable it from boot
+        <br>
+        ======================
+        <br>
+        <br>
+        # <em>systemctl enable lightdm</em>
+        <br>
+        <br>
+        For Audio
+        <br>
+        =========
+        <br>
+        Pulseaudio is recommended. To install:- 
+        <br>
+        <br>
+        # <em>pacman -S pulseaudio pulseaudio-alsa pavucontrol</em>
+        <br>
+        <br>
+        Recommended Common Packages
+        <br>
+        ===========================
+        <br>
+        <br>
+        # <em>pacman -S  ntfs-3g git celluloid vlc rhythmbox feh xed chromium firefox gvfs gvfs-mtp </em>
+        <br>
+        <br>
+         (ntfs-3g- support for ntfs drives, git- git tools, celluloid- video player, Vlc- video player, rhythmbox- muisc player, feh- image viewer, xed- text editor, chromium & firefox- browsers,gvfs & gvfs-mtp- Mounting support for android devices)
+        <br>
+        <br>
+        25 # reboot
+        <br>
+        <br>
+        
+        
+        <strong>Extras:-</strong> If your mirrors are slow you can change it by using the following command, reflector package is required.
+        
+        <br>
+        <br>
+        # <em>pacman -S reflector </em>
+        <br>
+        <br>
+        # <em>reflector --verbose --latest 50 --sort rate --save /etc/spacman.d/mirrorlist</em> (Add all mirrors generated from the arch linux official website.) 
+        <br>
+        <br>
+        <strong>    
+     <a href="https://www.archlinux.org/mirrorlist/all/"style="color:green"; text-decoration:none;>Arch linux Mirrors</a>
+        </strong>
+        <br>
+        <br>
+        # <em>reflector --verbose --country 'Canada' -l 5 --sort rate --save /etc/pacman.d/mirrorlist</em>
+        <br>
+        <br>
+        Retrieves top five mirrors of Canada according to the download rate, and save them to the mirrorlist file.
+        <br>
+        <br>
+        <strong>Extras:-</strong> opening tty- Alt+control+F2, closing tty- Alt+control+F7
+        <br>
+        <br>
+       
+ <strong>Bonus:-</strong> Cinnamon DE recommendations - lightdm-slick-greeter lightdm-settings (edit it from /etc/lightdm/lightdm.conf,modify value of greeter-session) (from yay), arc-gtk-theme papirus-icon-theme (pacman)
+        
+        
+        
+        <br>
+        <br>
+        By  <strong> <a href="https://github.com/nebulaxyz"style="color:yellow"; text-decoration:none;>Nebulaxyz</a></strong>
+        
+        
+        
+   </p>
+    
+</body>
+</html>

@@ -1,6 +1,6 @@
-:root {
+/*:root {
   /*background: radial-gradient(#050526 0%, #000000 90%) -20vw 10vh no-repeat black;*/
-  margin: 0;
+ /* margin: 0;
   padding-right:  950px;
   width: 100vw;
   height: 100vh;
@@ -30,27 +30,27 @@ body{
   overflow: hidden;    
   font-size: 28px;
   /*color: rgba(255,255,255,.70); */
-  margin: 0 auto;
+  /*margin: 0 auto;
   justify-content: center;
   padding-left: 80px;
-}
+} */
 
 /* Animation */
-.type {
+/*.type {
   animation: animated-text 2s steps(29,end) 1s 1 normal both,
              animated-cursor 600ms steps(29,end) infinite;
-}
+}*/
 
 /* text animation */
 
-@keyframes animated-text{
+/*@keyframes animated-text{
   from{width: 0;}
   to{width: 472px;}
-}
+} */
 
 /* cursor animations */
 
-@keyframes animated-cursor{
+/*@keyframes animated-cursor{
   from{border-right-color: rgba(0,255,0,.75);}
   to{border-right-color: transparent;}
 }

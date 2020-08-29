@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Install Arch Linux in legacy system</title>
+    <title>Install Arch Linux in Legacy system</title>
     <link rel="shortcut icon" href="../img/arch.png" type="image/x-icon">
-    <link rel="stylesheet" href="../css/arch-bios-install.css">
+    <link rel="stylesheet" href="../css/arch-install.css"> 
 
 </head>
 <body>
@@ -17,162 +17,171 @@ body {
 }
 </style>
 
+
     <meta name="viewport" content="480*800, user-scalable=yes">
     <meta name="viewport" content="480*854, user-scalable=yes">
     <meta name="viewport" content="1024*600, user-scalable=yes">
     <meta name="viewport" content="1280*800, user-scalable=yes">
-    <meta name="viewport" content="1280*720, user-scalable=yes">
+    <meta name="viewport" content="1280*720, user-scalable=yes"> 
+                                                                 
     
     
     <a href="index.html" style="text-decoration: none;font-family: monospace;"><p class="head" style="color: white; font-size: 30px;">SpaceLegion<span style="color: aqua;">.wiki</span></p></a>
     <br>
     <br>
     <p style="font-family:'monospace'"><strong>After booting into Arch iso</strong>
-        <br>
-        <br>
-              
-        1 # <em>ping stallman.org</em> (to check internet connectivity)
-        <br>
-        <br>
-        2 # <em>timedatectl set-ntp true</em> (to ensure the system clock is accurate)
-        <br>
-        <br>
-        3 # <em>lsblk</em> (to list all partitions with drives)
-        <br>
-        <br>
-        4 # <em>cfdisk /dev/sda</em> (your hardisk name)
-        <br>
-        <br>
-        <br>
+    <br>
+    <br>
+1 <em># ping stallman.org</em> (to check internet connectivity)
+   <br>
+   <br>
+2 <em># timedatectl set-ntp true</em> (to ensure the system clock is accurate)
+   <br>
+   <br>
+3 <em># lsblk</em> (to list all partitions with drives)
+   <br> 
+   <br>
+4 <em># cfdisk /dev/sda</em> (your hardisk name)
+   <br>
+   <br>
+   <br>
+<strong> For a basic partition.</strong>
+<br>
+=====================
+<br>
+<br>
+BIOS System partition (/dev/sda1) with 128M (512M might be a lit bit too much or its your choice )size, ext4 formatted. 
+<br>
+<br>
+Root partition (/dev/sda2) with at least 20G size or rest of HDD space, ext4 formatted.
+<br>
+<br>
+Home directory is optional.
+<br>
+<br>
+=> Select new type the partition size in 128MB and press enter key, make it bootable by clicking 'B' 
+<br>
+<br>
+=> For /(root) partition use the following configuration: New -> Size: rest of free space -> Type Linux filesystem.
+<br>
+<br>
+Then select Write, answer with yes in order to apply disk changes and then Quit the utility
+<br>
+<br>
+Type lsblk to review your changes.
+<br>
+<br>
+<br>
+5 <em># mkfs.ext4 /dev/sda1</em> (creates a file system for bios System partition) 
+<br>
+<br>
+6 <em># mkfs.ext4 /dev/sda2</em> (create the EXT4 file system for the root partition)
+<br>
+<br>
+--------------------------------------------------------------------------
+<br>
+<br>
+<em># mkfs.ext4 /dev/sdX</em>                                                     
+<br>
+<br>                                                                          
+<em># mkdir /mnt/home</em>                                                        
+<br>
+<br>                                                                                              
+<em># mount /dev/sdX /mnt/home</em> - optional, if you need home partition          
+<br>
+<br>
+-------------------------------------------------------------------------- 
+<br>
+<br>
+7 <em># mount /dev/sda2 /mnt</em> (In order to install Arch Linux, the /(root) partition must be mounted to /mnt directory mount point)
+<br>
+<br>
+8 <em># mkdir /mnt/boot</em> (In order to make sda1 mount on boot directory)
+<br>
+<br>
+9 <em># mount /dev/sda1 /mnt/boot</em> (mounting sda1 to boot directory) 
+<br>
+<br>
+10 <em># pacman -Syy</em> (to sync)
+<br>
+<br>
+11 <em># pacstrap /mnt base base-devel linux linux-firmware vim</em> (installs base system, base development tools, linux kernel, firmware, cli editor)
+<br>
+<br>
+12 <em># genfstab -U /mnt >> /mnt/etc/fstab</em> (generates fstab file for your new Linux system)
+<br>
+<br>
+<strong>Arch Linux System configuration</strong>
+<br>
+===============================
+<br>
+<br>
+13 <em># arch-chroot /mnt</em> (chroots into /mnt the system path)
+<br>
+<br>
+14 <em># ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime</em> (configure your region and city, This is an example)
+<br>
+<br>
+15 <em># hwclock --systohc</em> (configure the hardware clock to use UTC, the hardware clock is usually set to the local time)
+<br>
+<br>
+16 <em># vim /etc/locale.gen</em> (Configuring your system Language. Choose and uncomment your preferred encoding languages from /etc/locale.gen)
+<br>
+<br>
+In this scenario- "en_US.UTF-8 UTF-8", "en_US ISO-8859-1"
+<br>
+<br>
+17 <em># locale-gen</em> (Generates your system language layout)
+<br>
+<br>
+18 <em># echo LANG=en_US.UTF-8 >> /etc/locale.conf</em> (This assigns english as default language)
+<br>
+<br>
+19 <em># echo Arch Linux >> /etc/hostname</em> (type a name for your host, eg: Archlinux)
+<br>
+<br>
+20 <em># passwd</em> (create a password for root user)
+<br>
+<br>
+21 <em># pacman -S grub networkmanager</em> (installs grub, network manager)
+<br>
+<br>
+22 <em># grub-install /dev/sda</em> (installing grub on the entire drive ) 
+<br>
+<br>
+23 <em># grub-mkconfig -o /boot/grub/grub.cfg</em> (creating GRUB configuration file)
+<br>
+<br>
+24 <em># systemctl enable NetworkManager</em> (enabling it from boot itself)
+<br>
+<br>
+25 <em># useradd -mG wheel "username"</em> (creates a user account with sudo permissions)
+<br>
+<br>
+26 <em># passwd "username"</em> (create a password for user account)
+<br>
+<br>
+27 <em># EDITOR=nano visudo</em> (adding user account to sudoers group)
+<br>
+<br>
+uncomment "%wheel ALL=(ALL) ALL" Then save and exit
+<br>
+<br>
+28 <em># exit</em> (exiting chroot environment)
+<br>
+<br>
+29 <em># umount -R /mnt</em> (This will unmount drives)
+<br>
+<br>
+30 <em># reboot</em>
+<br>
+<br>
 
-        <strong>For a basic partition.</strong> 
-        <br>
-        =====================
-        <br>
-        <br>
-        BIOS System partition (/dev/sda1) with 128M (512M might be a lit bit too much or its your choice )size, ext4 formatted.
-        <br>
-        <br>
-        Root partition (/dev/sda2) with at least 20G size or rest of HDD space, ext4 formatted.
-        <br>
-        <br>
-        => Select new type the partition size in 128MB and press enter key, make it bootable by clicking 'B'
-        <br>
-        <br>
-        => For /(root) partition use the following configuration: New -> Size: rest of free space -> Type Linux filesystem.
-        <br>
-        <br>
-        Then select Write, answer with yes in order to apply disk changes and then Quit the utility
-        <br>
-        <br>
-        Type lsblk to review your changes.<br>
-        <br>
-        <br>
-        5 #<em>mkfs.ext4 /dev/sda1</em>(creates a file system for bios System partition)
-        <br>
-        <br>
-        6 # mkfs.ext4 /dev/sda2 (create the ext4 file system for the root partition)
-        <br>
-        <br>
-    
-        Installing Arch Linux
-        <br>
-        =====================
-        <br>
-        <br>
-        7 # <em>mount /dev/sda2 /mnt</em> (In order to install Arch Linux, the /(root) partition must be mounted to /mnt directory mount point)
-        <br>
-        <br>
-        8 # <em>mkdir /mnt/boot</em> (In order to make sda1 mount on boot directory)
-        <br>
-        <br>
-        9 # <em>mount /dev/sda1 /mnt/boot</em> (mounting sda1 to boot directory)
-        <br>
-        <br>
-        # <em>pacman -Sy</em> (to sync --if you are having some trouble connecting or not installing the latest ISO)
-        <br>
-        <br>
-        10 # <em>pacstrap /mnt base base-devel linux linux-firmware nano</em> (installs base system, base development tools, linux kernel, firmware, cli editor) 
-        <br>
-        <br>
-        11 # <em>genfstab -U -p /mnt >> /mnt/etc/fstab</em> (generates fstab file for your new Arch Linux system)
-        <br>
-        <br>
-        Arch Linux System configuration
-        <br>
-        ===============================
-        <br>
-        <br>
-        12 # <em>arch-chroot /mnt</em> (chroots into /mnt the system path)
-        <br>
-        <br>
-        13 # <em>pacman -S nano</em> (installs nano cli editor)
-        <br>
-        <br>
-        # <em>nano /etc/locale.gen</em> (Configuring your system Language. Choose and uncomment your preferred encoding languages from /etc/locale.gen) 
-          <br>
-          <br>
-          In this scenario- "en_US.UTF-8 UTF-8", "en_US ISO-8859-1"
-        <br>
-        <br>
-        # <em>locale-gen</em> (Generates your system language layout)
-        <br>
-        <br>
-        # <em>nano /etc/locale.conf</em> (type "LANG=en_US.UTF-8" then save and exit) (This assigns english as default language)
-        <br>
-        <br>
-        # <em>ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime</em> (configure your region and city, This is an example)
-        <br>
-        <br>
-        # <em>hwclock --systohc</em> (configure the hardware clock to use UTC, the hardware clock is usually set to the local time)
-        <br>
-        <br>
-        14 # <em>passwd</em> (create a password for root user)
-        <br>
-        <br>
-        # <em>useradd -mG wheel "username"</em> (creates a user account with sudo permissions)
-        <br>
-        <br>
-        # <em>passwd "username"</em> (create a password for user account)
-        <br>
-        <br>
-        # <em>EDITOR=nano visudo</em> (adding user account to sudoers group)
-        <br>
-        <br>
-        uncomment "%wheel ALL=(ALL) ALL" Then save and exit 
-        <br>
-        <br>
-        15 # <em>pacman -S grub</em> (installs grub)
-        <br>
-        <br>
-        16 # <em>grub-install /dev/sda </em> (installing grub on the entire drive ) 
-        <br>
-        <br>
-        17 # <em>grub-mkconfig -o /boot/grub/grub.cfg</em> (generating grub configuration file)
-        <br>
-        <br>
-        18 # <em>pacman -S networkmanager</em> (package for internet connectivity)
-        <br>
-        <br>
-        19 # <em>systemctl enable NetworkManager</em> (enabling it from boot itself)
-        <br>
-        <br>
-        20 # <em>nano /etc/hostname</em> (type a name for your host, eg: Archlinux)
-        <br>
-        <br>
-        21 # <em>exit</em> (exiting chroot environment)
-        <br>
-        <br>
-        22 # <em>umount -R /mnt</em> (This will unmount drives)
-        <br>
-        <br>
-        23 # <em>reboot</em> 
-        <br>
-        <br>
-        The base installation has been finished
-        <br>
-        ***************************************
-        <br>
+<strong>The base installation has been finished</strong>
+<br>
+***************************************
+
+ <br>
         <br>
         Setting up your desktop
         <br>

@@ -9,23 +9,183 @@
     <style>
       body {
         background-color: black;
-        color: cyan;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        min-height: 100vh;
+        color: white;
         font-family: monospace;
+        font-size: 18px;
       }
     </style>
-
     <meta name="viewport" content="480*800, user-scalable=yes" />
     <meta name="viewport" content="480*854, user-scalable=yes" />
     <meta name="viewport" content="1024*600, user-scalable=yes" />
     <meta name="viewport" content="1280*800, user-scalable=yes" />
     <meta name="viewport" content="1280*720, user-scalable=yes" />
 
-    <h1 style="font-size: 50px">Coming Soon!</h1>
+    <a href="index.html" style="text-decoration: none"
+      ><p class="head" style="color: white; font-size: 30px">
+        SpaceLegion<span style="color: aqua">.wiki</span>
+      </p></a
+    >
+    <br />
+    <p style="font-size: 30px">Vim Text Editor Guide</p>
+    <br />
+    <p>Every letters in vim are case sensitive</p>
+    <p>=======================================</p>
+    <br />
+    <br />
+    <p>i -for insert mode</p>
+    <br />
+    <br />
+    <p>esc -escape from insert mode & go to command mode</p>
+    <br />
+    <br />
+    <p>j -move down</p>
+    <br />
+    <br />
+    <p>k -move up</p>
+    <br />
+    <br />
+    <p>l -right</p>
+    <br />
+    <br />
+    <p>h -left</p>
+    <br />
+    <br />
+    <p>:wq -to save and exit vim</p>
+    <br />
+    <br />
+    <p>:w -save changes and stay in vim</p>
+    <br />
+    <br />
+    <p>shift+zz -another way to save and exit</p>
+    <br />
+    <br />
+    <p>:q -exit vim</p>
+    <br />
+    <br />
+    <p>:q! -exiting without saving changes</p>
+    <br />
+    <br />
+    <p>
+      dd -deletes a line in command mode (to delete multiple eg: 10dd, deleting
+      a line will copy it to your clipboard)
+    </p>
+    <br />
+    <br />
+    <p>G -go to bottom</p>
+    <br />
+    <br />
+    <p>gg -go to top</p>
+    <br />
+    <br />
+    <p>} -skips a block of code (combine d to delete a block of code)</p>
+    <br />
+    <br />
+    <p>{ -reverse the process</p>
+    <br />
+    <br />
+    <p>
+      Use number in front of movement keys to reach specific line eg: 20j, 10k,
+      h50, 70l, 20{, }100
+    </p>
+    <br />
+    <br />
+    <p>u -to undo</p>
+    <br />
+    <br />
+    <p>control+r -to redo</p>
+    <br />
+    <br />
+    <p>To undo or redo multiple actions eg: u20 or ctrl+50</p>
+    <br />
+    <br />
+    <p>control+r -to redo</p>
+    <br />
+    <br />
+    <p>. -repeat the latest action (add numbers in front to multiply)</p>
+    <br />
+    <br />
+    <p>yy -copies line to clipboard</p>
+    <br />
+    <br />
+    <p>p -paste below</p>
+    <br />
+    <br />
+    <p>P -paste above</p>
+    <br />
+    <br />
+    <p>
+      V -visual mode (In visual mode use combination of G,gg,h,j,k,l,dd,yy,{,}
+      and other work arounds to highlight,delete and copy etc)
+    </p>
+    <br />
+    <br />
+    <p>o -goes to insert mode and add new line below cursor</p>
+    <br />
+    <br />
+    <p>O - same thing above the cursor</p>
+    <br />
+    <br />
+    <p>w - moves to the next word</p>
+    <br />
+    <br />
+    <p>W - skips space</p>
+    <br />
+    <br />
+    <p>b - backwards a word</p>
+    <br />
+    <br />
+    <p>:"line number" -go to a specific line</p>
+    <br />
+    <br />
+    <p>0 -beginning of the line (use w0 combo)</p>
+    <br />
+    <br />
+    <p>t -go to a charactor, eg: t&</p>
+    <br />
+    <br />
+    <p>f -go to a charator with cursor on it, eg: f#</p>
+    <br />
+    <br />
+    <p>
+      % -deletes code between a block, bring cursor to the beginning of block
+      and d%
+    </p>
+    <br />
+    <br />
+    <p>:tabnew - creates new tab in vim, (tab to auto complete)</p>
+    <br />
+    <br />
+    <p>:tabprevious - go to previous tab</p>
+    <br />
+    <br />
+    <p>:wq "file name" - saving a file in a new tab</p>
+    <br />
+    <br />
+    <p>:tabNext - routes through tabs, if there are multiple tabs</p>
+    <br />
+    <br />
+    <p>:terminal - opens a terminal in vim</p>
+    <br />
+    <br />
+    <p>ctrl+ww - switch between editor and terminal</p>
+    <br />
+    <br />
+    <br />
+    <p>
+      /"character or pattern" - search in vim (use n and N to navigate through
+      search terms)
+    </p>
+    <br />
+    <br />
+    By
+    <strong>
+      <a
+        href="https://github.com/nebulaxyz"
+        style="color: yellow"
+        ;
+        text-decoration:none;
+        >Nebulaxyz</a
+      ></strong
+    >
   </body>
 </html>
